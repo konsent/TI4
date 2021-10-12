@@ -147,8 +147,8 @@ class scoringboard : AppCompatActivity(){
                       p1_sum_mr.text = sb_spinner_mr_p1.toString()
                 }
             }
-            //여기를 봐바라 바바라3
             sb_p1_sum.setText(secretsum)
+            //푸시도전
 
 
 
