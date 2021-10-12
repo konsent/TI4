@@ -148,7 +148,7 @@ class scoringboard : AppCompatActivity(){
                 }
             }
             sb_p1_sum.setText(secretsum)
-            //푸시도전
+            //푸시도전222
 
 
 
