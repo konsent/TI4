@@ -19,7 +19,7 @@ class newgame_1 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_newgame1)
 
-        val spinner1: Spinner = findViewById(R.id.spinner_players) // 플레이어 수 드롭다운
+        val spinner1: Spinner = findViewById(R.id.spinner_players) // 플레이어 수 드롭다운 스피너 메뉴
         ArrayAdapter.createFromResource(
             this,
             R.array.players_number,
@@ -29,7 +29,7 @@ class newgame_1 : AppCompatActivity() {
             spinner1.adapter = adapter
         }
 
-        val spinner2: Spinner = findViewById(R.id.spinner_vp) // 승점 드롭다운
+        val spinner2: Spinner = findViewById(R.id.spinner_vp) // 승점 드롭다운 스피너 메뉴
         ArrayAdapter.createFromResource(
             this,
             R.array.VP,
@@ -39,7 +39,7 @@ class newgame_1 : AppCompatActivity() {
             spinner2.adapter = adapter
 
         }
-        sub_btn_newgame.setOnClickListener {
+        sub_btn_newgame.setOnClickListener { // NEW GAME 버튼
 
             var selectednumber1 = spinner1.selectedItem
             val intent1 = Intent(this, newplayers::class.java) // 다음으로 넘어가는 버튼

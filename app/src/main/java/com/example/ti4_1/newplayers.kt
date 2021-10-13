@@ -14,7 +14,7 @@ class newplayers : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_newplayers)
 
-        if (intent.hasExtra("number1")) {
+        if (intent.hasExtra("number1")) { // 직전 액티비티에서 가져온 플레이어 수에 따라 textview 숨김해제
             var player_num = intent.getStringExtra("number1")
 
             if (player_num.equals("4")) {
@@ -29,7 +29,7 @@ class newplayers : AppCompatActivity() {
             }
 
         }
-        sub_btn_newgame2.setOnClickListener {
+        sub_btn_newgame2.setOnClickListener { // 플레이어 이름 기록 후 다음 액티비티로 넘기기
             if (intent.hasExtra("number1")){
                 var player_num = intent.getStringExtra("number1")
                 val intent3 = Intent(this, scoringboard::class.java)
