@@ -6,15 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
-import androidx.core.view.get
-import androidx.databinding.DataBindingUtil
-import com.example.ti4_1.databinding.ActivityMainBinding
-import kotlinx.android.synthetic.main.activity_loadingscreen.view.*
-import kotlinx.android.synthetic.main.activity_newplayers.*
 import kotlinx.android.synthetic.main.activity_scoringboard.*
-import org.w3c.dom.Text
 import java.util.*
-import kotlin.coroutines.EmptyCoroutineContext.plus
 
 class scoringboard : AppCompatActivity(){
 
@@ -45,55 +38,48 @@ class scoringboard : AppCompatActivity(){
             "  영향력 16 소비  ",
             "  다른 플레이어의 고향 성계 행성 1개 점령  ")
 
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scoringboard)
 
 
-        var set: TreeSet<Int> = TreeSet()  // 임무 랜덤 분배
+        val set: TreeSet<Int> = TreeSet()  // 임무 랜덤 분배
         while(set.size < 5){
             val random = Random()
             val num = random.nextInt(10)
             set.add(num)
         }
-
         var nCount2 = 0
         for( i in set ) { // 2번 미션 랜덤으로 골라서 5개 집어넣기
-            var tmpID : Int = getResources().getIdentifier("obj" + (nCount2 + 1), "id", packageName )
+            val tmpID : Int = getResources().getIdentifier("obj" + (nCount2 + 1), "id", packageName )
             val tmpID_selected = findViewById<TextView>(tmpID)
             tmpID_selected.setText(objectives1.get(i))
             nCount2++ }
-
         for (i in 3..5){ // 1번 2번 임무 제외 3번부터 5번미션 선택하기
-            var btn1 : Int = getResources().getIdentifier("btn" + (i), "id", packageName )
+            val btn1 : Int = getResources().getIdentifier("btn" + (i), "id", packageName )
             val btn_selected = findViewById<TextView>(btn1)
-            var obj_reveal1 : Int = getResources().getIdentifier("obj" + (i), "id", packageName )
+            val obj_reveal1 : Int = getResources().getIdentifier("obj" + (i), "id", packageName )
             val obj_selected = findViewById<TextView>(obj_reveal1)
             btn_selected.setOnClickListener{
                 obj_selected.visibility = View.VISIBLE
             }
         }
-
-
         var nCount = 0
         for( i in set ) { // 2번 미션 랜덤으로 골라서 5개 집어넣기
-            var tmpID : Int = getResources().getIdentifier("obj2" + (nCount + 1), "id", packageName )
+            val tmpID : Int = getResources().getIdentifier("obj2" + (nCount + 1), "id", packageName )
             val tmpID_selected = findViewById<TextView>(tmpID)
             tmpID_selected.setText(objectives2.get(i))
             nCount++ }
-
         for (i in 1..5){ // 2번 미션 5개
-            var btn2 : Int = getResources().getIdentifier("btn2" + (i), "id", packageName )
+            val btn2 : Int = getResources().getIdentifier("btn2" + (i), "id", packageName )
             val btn_selected2 = findViewById<TextView>(btn2)
-            var obj_reveal2 : Int = getResources().getIdentifier("obj2" + (i), "id", packageName )
+            val obj_reveal2 : Int = getResources().getIdentifier("obj2" + (i), "id", packageName )
             val obj_selected2 = findViewById<TextView>(obj_reveal2)
             btn_selected2.setOnClickListener{
                 obj_selected2.visibility = View.VISIBLE
             }
         }
-
         if (intent.hasExtra("number1")) { // 전 액티비티에서 고른 플레이어 수 만큼 플레이어 컬럼 숨김을 해제한다
-            var player_num2 = intent.getStringExtra("number1")
+            val player_num2 = intent.getStringExtra("number1")
 
             if (player_num2.equals("4")) {
                 linearLayout4.visibility = View.VISIBLE
@@ -105,8 +91,6 @@ class scoringboard : AppCompatActivity(){
                 linearLayout5.visibility = View.VISIBLE
                 linearLayout6.visibility = View.VISIBLE
             }
-
-
 
 
             val sb_spinner_secret_p1: Spinner = findViewById(R.id.sb_secret1) // 비밀목표 드랍다운 #1
@@ -145,7 +129,7 @@ class scoringboard : AppCompatActivity(){
             sb_spinner_mr_p1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
                 override fun onNothingSelected(p0: AdapterView<*>?) {}
                 override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                    var sb_spinner_mr_p1 = parent?.getItemAtPosition(position)
+                    val sb_spinner_mr_p1 = parent?.getItemAtPosition(position)
 //                      var sum2 = sb_spinner_mr_p1.toString().toInt()
                       p1_sum_mr.text = sb_spinner_mr_p1.toString()
                 }
@@ -262,7 +246,7 @@ class scoringboard : AppCompatActivity(){
 
 
             for (i in 1 until 7) {
-                val id = "sb_p" + (i)
+                val id = "sb_p$i"
                 val idd: Int = resources.getIdentifier(id, "id", packageName)
                 val textView: TextView = findViewById<TextView>(idd)
                 if (intent.hasExtra("p" + (i) + "name")) {
