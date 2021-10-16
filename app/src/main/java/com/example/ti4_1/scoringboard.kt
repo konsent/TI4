@@ -4,10 +4,14 @@ import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import kotlinx.android.synthetic.main.activity_scoringboard.*
 import java.util.*
+import android.widget.Spinner
+import androidx.core.view.get
+
 
 class scoringboard : AppCompatActivity(){
 
@@ -93,50 +97,47 @@ class scoringboard : AppCompatActivity(){
             }
 
 
+
             val sb_spinner_secret_p1: Spinner = findViewById(R.id.sb_secret1) // 비밀목표 드랍다운 #1
-            ArrayAdapter.createFromResource(
-                this,
-                R.array.secret,
-                android.R.layout.simple_spinner_item
+            ArrayAdapter.createFromResource(this, R.array.secret, android.R.layout.simple_spinner_item
             ).also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 sb_spinner_secret_p1.adapter = adapter
             }
 
             val sb_spinner_mr_p1: Spinner = findViewById(R.id.sb_mr1) // 메카톨렉스 드랍다운 #1
-            ArrayAdapter.createFromResource(
-                this,
-                R.array.secret,
-                android.R.layout.simple_spinner_item
+            ArrayAdapter.createFromResource(this, R.array.secret, android.R.layout.simple_spinner_item
             ).also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 sb_spinner_mr_p1.adapter = adapter
             }
 
-           val secretsum = 0
-          // 첫번째 스피너 값 불러오기
-           sb_spinner_secret_p1.setSelection(0)
-           sb_spinner_secret_p1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-                override fun onNothingSelected(p0: AdapterView<*>?) {}
-                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                    var sb_spinner_secret_p1 = parent?.setSelection(position)
-                    secretsum.plus(position)
+//            val sb_spinner_secret_p1 = findViewById<View>(R.id.sb_secret1) as Spinner
+//            val text = sb_spinner_secret_p1.getItemAtPosition()
 
-                }
-            }
+
+
+
+    // sb_spinner_secret_p1와 sb_spinner_mr_p1에서 선택된 값을 Int로 받아서 합계를 내고
+    // xml에 있는 sb_p1_sum<Textview>에 넣고싶음
+
+           // 첫번째 스피너 값 불러오기
+           sb_spinner_secret_p1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+               override fun onNothingSelected(position: AdapterView<*>?) {}
+               override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                   sb_spinner_secret_p1.setSelection(position, false)
+                   var sb_spinner_secret_p1 = parent?.setSelection(position)
+               }
+           }
            // 두번째 스피너 값 불러오기
-            sb_spinner_mr_p1.setSelection(0)
             sb_spinner_mr_p1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-                override fun onNothingSelected(p0: AdapterView<*>?) {}
+                override fun onNothingSelected(position: AdapterView<*>?) {}
                 override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    sb_spinner_mr_p1.setSelection(position, false)
                     val sb_spinner_mr_p1 = parent?.getItemAtPosition(position)
-//                      var sum2 = sb_spinner_mr_p1.toString().toInt()
-                      p1_sum_mr.text = sb_spinner_mr_p1.toString()
                 }
             }
 
-            // 필요한 기능
-            // 체크박스 갯수 + 스피너 드랍다운 메뉴에서 고른 숫자 합계를 sb_p1_sum 에다가 집어넣어야함
 
 
 
