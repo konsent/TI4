@@ -119,7 +119,11 @@ class scoringboard : AppCompatActivity(){
 
 
     // sb_spinner_secret_p1와 sb_spinner_mr_p1에서 선택된 값을 Int로 받아서 합계를 내고
-    // xml에 있는 sb_p1_sum<Textview>에 넣고싶음
+    // xml에 있는 sb_p1_sum<Textview>에 넣고싶음 (두 스피너 값은 계속 바뀜)
+
+    // 질문#1 - 서브클래스(함수 안?)에 선언된 스피너 값을 수퍼클래스(함수 밖?)에 있는 value에 집어넣을 수 있는지?
+    // 질문#2 - 선택된 스피너 값은 string인지? toString().toInt()로 더하려고하면 textview에 숫자가 안뜨고 글자들이 뜸
+    // plus나 add 혹은 sum()함수를 선언해서 그냥 두 값을 더해버리면 되는지?
 
            // 첫번째 스피너 값 불러오기
            sb_spinner_secret_p1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
