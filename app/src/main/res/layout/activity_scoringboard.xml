@@ -284,7 +284,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout1"
-        android:layout_width="wrap_content"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/border1"
@@ -407,7 +407,7 @@
             android:layout_gravity="center"
             android:layout_weight="2"
             android:gravity="center"
-            android:spinnerMode="dropdown"
+            android:spinnerMode="dialog"
             android:textAlignment="center"
             tools:layout_editor_absoluteX="601dp"
             tools:layout_editor_absoluteY="682dp" />
@@ -419,7 +419,7 @@
             android:layout_gravity="center"
             android:layout_weight="2"
             android:gravity="center"
-            android:spinnerMode="dropdown"
+            android:spinnerMode="dialog"
             android:textAlignment="center"
             tools:layout_editor_absoluteX="601dp"
             tools:layout_editor_absoluteY="682dp" />
@@ -445,7 +445,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="wrap_content"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/border1"
@@ -567,7 +567,7 @@
             android:layout_gravity="center"
             android:layout_weight="2"
             android:gravity="center"
-            android:spinnerMode="dropdown"
+            android:spinnerMode="dialog"
             android:textAlignment="center"
             tools:layout_editor_absoluteX="601dp"
             tools:layout_editor_absoluteY="682dp" />
@@ -579,7 +579,7 @@
             android:layout_gravity="center"
             android:layout_weight="2"
             android:gravity="center"
-            android:spinnerMode="dropdown"
+            android:spinnerMode="dialog"
             android:textAlignment="center"
             tools:layout_editor_absoluteX="601dp"
             tools:layout_editor_absoluteY="682dp" />
@@ -605,7 +605,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout3"
-        android:layout_width="wrap_content"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/border1"
@@ -727,7 +727,7 @@
             android:layout_gravity="center"
             android:layout_weight="2"
             android:gravity="center"
-            android:spinnerMode="dropdown"
+            android:spinnerMode="dialog"
             android:textAlignment="center"
             tools:layout_editor_absoluteX="601dp"
             tools:layout_editor_absoluteY="682dp" />
@@ -739,7 +739,7 @@
             android:layout_gravity="center"
             android:layout_weight="2"
             android:gravity="center"
-            android:spinnerMode="dropdown"
+            android:spinnerMode="dialog"
             android:textAlignment="center"
             tools:layout_editor_absoluteX="601dp"
             tools:layout_editor_absoluteY="682dp" />
@@ -765,7 +765,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout4"
-        android:layout_width="wrap_content"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/border1"
@@ -888,7 +888,7 @@
             android:layout_gravity="center"
             android:layout_weight="2"
             android:gravity="center"
-            android:spinnerMode="dropdown"
+            android:spinnerMode="dialog"
             android:textAlignment="center"
             tools:layout_editor_absoluteX="601dp"
             tools:layout_editor_absoluteY="682dp" />
@@ -900,7 +900,7 @@
             android:layout_gravity="center"
             android:layout_weight="2"
             android:gravity="center"
-            android:spinnerMode="dropdown"
+            android:spinnerMode="dialog"
             android:textAlignment="center"
             tools:layout_editor_absoluteX="601dp"
             tools:layout_editor_absoluteY="682dp" />
@@ -926,7 +926,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout5"
-        android:layout_width="wrap_content"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/border1"
@@ -1049,7 +1049,7 @@
             android:layout_gravity="center"
             android:layout_weight="2"
             android:gravity="center"
-            android:spinnerMode="dropdown"
+            android:spinnerMode="dialog"
             android:textAlignment="center"
             tools:layout_editor_absoluteX="601dp"
             tools:layout_editor_absoluteY="682dp" />
@@ -1061,7 +1061,7 @@
             android:layout_gravity="center"
             android:layout_weight="2"
             android:gravity="center"
-            android:spinnerMode="dropdown"
+            android:spinnerMode="dialog"
             android:textAlignment="center"
             tools:layout_editor_absoluteX="601dp"
             tools:layout_editor_absoluteY="682dp" />
@@ -1087,7 +1087,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout6"
-        android:layout_width="wrap_content"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/border1"
@@ -1210,7 +1210,7 @@
             android:layout_gravity="center"
             android:layout_weight="2"
             android:gravity="center"
-            android:spinnerMode="dropdown"
+            android:spinnerMode="dialog"
             android:textAlignment="center"
             tools:layout_editor_absoluteX="601dp"
             tools:layout_editor_absoluteY="682dp" />
@@ -1222,7 +1222,7 @@
             android:layout_gravity="center"
             android:layout_weight="2"
             android:gravity="center"
-            android:spinnerMode="dropdown"
+            android:spinnerMode="dialog"
             android:textAlignment="center"
             tools:layout_editor_absoluteX="601dp"
             tools:layout_editor_absoluteY="682dp" />

@@ -1,7 +1,7 @@
 package com.example.ti4_1
 
 import android.annotation.SuppressLint
-import android.content.pm.ActivityInfo
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -45,18 +45,10 @@ class scoringboard : AppCompatActivity(){
             "  다른 플레이어의 고향 성계 행성 1개 점령  ")
 
         super.onCreate(savedInstanceState)
+
+
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(R.layout.activity_scoringboard) // setContentView(binding.root)이거였음
-        var aaa = findViewById<Spinner>(R.id.sb_secret1)
-        var bbb = findViewById<Spinner>(R.id.sb_mr1)
-
-        if (aaa != null) {
-            if (bbb != null) {
-                initSpinners(aaa, bbb)
-            } else {
-                null
-            }
-        }
 
         val set: TreeSet<Int> = TreeSet()  // 임무 랜덤 분배
         while(set.size < 5){
@@ -109,12 +101,51 @@ class scoringboard : AppCompatActivity(){
             }
 
 
-
             val sb_spinner_secret_p1: Spinner = findViewById(R.id.sb_secret1) // 비밀목표 드랍다운 #1
             ArrayAdapter.createFromResource(this, R.array.secret, android.R.layout.simple_spinner_item
             ).also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 sb_spinner_secret_p1.adapter = adapter
+            }
+
+            val sb_spinner_secret_p2: Spinner = findViewById(R.id.sb_secret2) // 비밀목표 드랍다운 #2
+            ArrayAdapter.createFromResource(
+                this, R.array.secret, android.R.layout.simple_spinner_item
+            ).also { adapter ->
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                sb_spinner_secret_p2.adapter = adapter
+            }
+
+            val sb_spinner_secret_p3: Spinner = findViewById(R.id.sb_secret3) // 비밀목표 드랍다운 #3
+            ArrayAdapter.createFromResource(
+                this, R.array.secret, android.R.layout.simple_spinner_item
+            ).also { adapter ->
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                sb_spinner_secret_p3.adapter = adapter
+            }
+
+            val sb_spinner_secret_p4: Spinner = findViewById(R.id.sb_secret4) // 비밀목표 드랍다운 #4
+            ArrayAdapter.createFromResource(
+                this, R.array.secret, android.R.layout.simple_spinner_item
+            ).also { adapter ->
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                sb_spinner_secret_p4.adapter = adapter
+            }
+
+            val sb_spinner_secret_p5: Spinner = findViewById(R.id.sb_secret5) // 비밀목표 드랍다운 #5
+            ArrayAdapter.createFromResource(
+                this, R.array.secret, android.R.layout.simple_spinner_item
+            ).also { adapter ->
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                sb_spinner_secret_p5.adapter = adapter
+            }
+
+            val sb_spinner_secret_p6: Spinner = findViewById(R.id.sb_secret6) // 비밀목표 드랍다운 #6
+            ArrayAdapter.createFromResource(
+                this, R.array.secret, android.R.layout.simple_spinner_item
+            ).also { adapter ->
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                sb_spinner_secret_p6.adapter = adapter
             }
 
             val sb_spinner_mr_p1: Spinner = findViewById(R.id.sb_mr1) // 메카톨렉스 드랍다운 #1
@@ -123,91 +154,6 @@ class scoringboard : AppCompatActivity(){
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 sb_spinner_mr_p1.adapter = adapter
             }
-
-    // sb_spinner_secret_p1와 sb_spinner_mr_p1에서 선택된 값을 Int로 받아서 합계를 내고
-    // xml에 있는 sb_p1_sum<Textview>에 넣고싶음 (두 스피너 값은 계속 바뀜)
-
-    // 질문#1 - 서브클래스(함수 안?)에 선언된 스피너 값을 수퍼클래스(함수 밖?)에 있는 value에 집어넣을 수 있는지?
-    // 질문#2 - 선택된 스피너 값은 string인지? toString().toInt()로 더하려고하면 textview에 숫자가 안뜨고 글자들이 뜸
-    // plus나 add 혹은 sum()함수를 선언해서 그냥 두 값을 더해버리면 되는지?
-
-
-
-           // 첫번째 스피너 값 불러오기
-           sb_spinner_secret_p1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-               override fun onNothingSelected(position: AdapterView<*>?) {}
-               override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                   sb_spinner_secret_p1.setSelection(position, false)
-                   sb_spinner_secret_p1.requestFocusFromTouch()
-                   var sb_spinner_secret_p1 = parent?.setSelection(position)
-//                   xxx = sb_spinner_secret_p1.toString().toInt()
-                   }
-               }
-            // 두번째 스피너 값 불러오기
-            sb_spinner_mr_p1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-                override fun onNothingSelected(position: AdapterView<*>?) {}
-                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                    sb_spinner_mr_p1.setSelection(position, false)
-                    val sb_spinner_mr_p1 = parent?.getItemAtPosition(position)
-//                    yyy = sb_spinner_mr_p1.toString().toInt()
-
-
-                }
-            }
-
-
-
-            val sb_spinner_secret_p2: Spinner = findViewById(R.id.sb_secret2) // 비밀목표 드랍다운 #2
-            ArrayAdapter.createFromResource(
-                this,
-                R.array.secret,
-                android.R.layout.simple_spinner_item
-            ).also { adapter ->
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                sb_spinner_secret_p2.adapter = adapter
-            }
-
-            val sb_spinner_secret_p3: Spinner = findViewById(R.id.sb_secret3) // 비밀목표 드랍다운 #3
-            ArrayAdapter.createFromResource(
-                this,
-                R.array.secret,
-                android.R.layout.simple_spinner_item
-            ).also { adapter ->
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                sb_spinner_secret_p3.adapter = adapter
-            }
-
-            val sb_spinner_secret_p4: Spinner = findViewById(R.id.sb_secret4) // 비밀목표 드랍다운 #4
-            ArrayAdapter.createFromResource(
-                this,
-                R.array.secret,
-                android.R.layout.simple_spinner_item
-            ).also { adapter ->
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                sb_spinner_secret_p4.adapter = adapter
-            }
-
-            val sb_spinner_secret_p5: Spinner = findViewById(R.id.sb_secret5) // 비밀목표 드랍다운 #5
-            ArrayAdapter.createFromResource(
-                this,
-                R.array.secret,
-                android.R.layout.simple_spinner_item
-            ).also { adapter ->
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                sb_spinner_secret_p5.adapter = adapter
-            }
-
-            val sb_spinner_secret_p6: Spinner = findViewById(R.id.sb_secret6) // 비밀목표 드랍다운 #6
-            ArrayAdapter.createFromResource(
-                this,
-                R.array.secret,
-                android.R.layout.simple_spinner_item
-            ).also { adapter ->
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                sb_spinner_secret_p6.adapter = adapter
-            }
-
-
 
             val sb_spinner_mr_p2: Spinner = findViewById(R.id.sb_mr2) // 메카톨렉스 드랍다운 #2
             ArrayAdapter.createFromResource(
@@ -259,6 +205,13 @@ class scoringboard : AppCompatActivity(){
                 sb_spinner_mr_p6.adapter = adapter
             }
 
+            initSpinners1(sb_spinner_mr_p1,sb_spinner_secret_p1)
+            initSpinners2(sb_spinner_mr_p2,sb_spinner_secret_p2)
+            initSpinners3(sb_spinner_mr_p3,sb_spinner_secret_p3)
+            initSpinners4(sb_spinner_mr_p4,sb_spinner_secret_p4)
+            initSpinners5(sb_spinner_mr_p5,sb_spinner_secret_p5)
+            initSpinners6(sb_spinner_mr_p6,sb_spinner_secret_p6)
+
 
             for (i in 1 until 7) {
                 val id = "sb_p$i"
@@ -272,12 +225,87 @@ class scoringboard : AppCompatActivity(){
         }
     }
 
-    private fun initSpinners(vararg spinners: Spinner) {
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, (1..10).toList())
+    private fun initSpinners1(vararg spinners: Spinner) {
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, (0..10).toList())
         val listener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                val value = parent?.getItemAtPosition(position)?.toString()?.toIntOrNull() ?:0
-                updateSum()
+//                val value = parent?.getItemAtPosition(position)?.toString()?.toIntOrNull() ?:0
+                updateSum1()
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+        }
+        for (spinner in spinners) {
+            spinner.adapter = adapter
+            spinner.onItemSelectedListener = listener
+        }
+    }
+    private fun initSpinners2(vararg spinners: Spinner) {
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, (0..10).toList())
+        val listener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//                val value = parent?.getItemAtPosition(position)?.toString()?.toIntOrNull() ?:0
+                updateSum2()
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+        }
+        for (spinner in spinners) {
+            spinner.adapter = adapter
+            spinner.onItemSelectedListener = listener
+        }
+    }
+    private fun initSpinners3(vararg spinners: Spinner) {
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, (0..10).toList())
+        val listener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//                val value = parent?.getItemAtPosition(position)?.toString()?.toIntOrNull() ?:0
+                updateSum3()
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+        }
+        for (spinner in spinners) {
+            spinner.adapter = adapter
+            spinner.onItemSelectedListener = listener
+        }
+    }
+    private fun initSpinners4(vararg spinners: Spinner) {
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, (0..10).toList())
+        val listener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//                val value = parent?.getItemAtPosition(position)?.toString()?.toIntOrNull() ?:0
+                updateSum4()
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+        }
+        for (spinner in spinners) {
+            spinner.adapter = adapter
+            spinner.onItemSelectedListener = listener
+        }
+    }
+    private fun initSpinners5(vararg spinners: Spinner) {
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, (0..10).toList())
+        val listener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//                val value = parent?.getItemAtPosition(position)?.toString()?.toIntOrNull() ?:0
+                updateSum5()
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+        }
+        for (spinner in spinners) {
+            spinner.adapter = adapter
+            spinner.onItemSelectedListener = listener
+        }
+    }
+    private fun initSpinners6(vararg spinners: Spinner) {
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, (0..10).toList())
+        val listener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//                val value = parent?.getItemAtPosition(position)?.toString()?.toIntOrNull() ?:0
+                updateSum6()
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
@@ -288,12 +316,38 @@ class scoringboard : AppCompatActivity(){
         }
     }
 
-
-    private fun updateSum() = with(binding) {
+    private fun updateSum1() = with(binding) {
         val s1 = sb_secret1.selectedItem?.toString()?.toIntOrNull() ?:0
         val s2 = sb_mr1.selectedItem?.toString()?.toIntOrNull() ?:0
-        sb_p1_sum.text = "0" //(s1 + s2).toString()
+        sb_p1_sum.text = (s1 + s2).toString()
     }
+    private fun updateSum2() = with(binding) {
+        val s1 = sb_secret2.selectedItem?.toString()?.toIntOrNull() ?:0
+        val s2 = sb_mr2.selectedItem?.toString()?.toIntOrNull() ?:0
+        sb_p2_sum.text = (s1 + s2).toString()
+    }
+    private fun updateSum3() = with(binding) {
+        val s1 = sb_secret3.selectedItem?.toString()?.toIntOrNull() ?:0
+        val s2 = sb_mr3.selectedItem?.toString()?.toIntOrNull() ?:0
+        sb_p3_sum.text = (s1 + s2).toString()
+    }
+    private fun updateSum4() = with(binding) {
+        val s1 = sb_secret4.selectedItem?.toString()?.toIntOrNull() ?:0
+        val s2 = sb_mr4.selectedItem?.toString()?.toIntOrNull() ?:0
+        sb_p4_sum.text = (s1 + s2).toString()
+    }
+    private fun updateSum5() = with(binding) {
+        val s1 = sb_secret5.selectedItem?.toString()?.toIntOrNull() ?:0
+        val s2 = sb_mr5.selectedItem?.toString()?.toIntOrNull() ?:0
+        sb_p5_sum.text = (s1 + s2).toString()
+    }
+    private fun updateSum6() = with(binding) {
+        val s1 = sb_secret6.selectedItem?.toString()?.toIntOrNull() ?:0
+        val s2 = sb_mr6.selectedItem?.toString()?.toIntOrNull() ?:0
+        sb_p6_sum.text = (s1 + s2).toString()
+    }
+
+
 }
 
 
