@@ -58,7 +58,6 @@ class scoringboard : AppCompatActivity(){
             }
         }
 
-
         val set: TreeSet<Int> = TreeSet()  // 임무 랜덤 분배
         while(set.size < 5){
             val random = Random()
@@ -272,12 +271,6 @@ class scoringboard : AppCompatActivity(){
             }
         }
     }
-
-//    val sb_spinner_secret_p1: Spinner = findViewById(R.id.sb_secret1) // 비밀목표 드랍다운 #1
-//    ArrayAdapter.createFromResource(this, R.array.secret, android.R.layout.simple_spinner_item
-//    ).also { adapter ->
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//        sb_spinner_secret_p1.adapter = adapter
 
     private fun initSpinners(vararg spinners: Spinner) {
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, (1..10).toList())
