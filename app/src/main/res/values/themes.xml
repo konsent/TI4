@@ -15,4 +15,8 @@
         <item name="android:windowFullscreen">true</item>
         <item name="windowNoTitle">true</item>
     </style>
+    <style name="SpinnerDivideStyle" parent="android:style/Widget.ListView.DropDown">
+        <item name="android:divider">#000000</item> <!-- divider 색 -->
+        <item name="android:dividerHeight">2dp</item> <!-- divider 높이 -->
+    </style>
 </resources>

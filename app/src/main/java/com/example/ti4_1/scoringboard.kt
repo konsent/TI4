@@ -20,7 +20,10 @@ class scoringboard : AppCompatActivity(){
     @SuppressLint("SetTextI18n", "CutPasteId")
     override fun onCreate(savedInstanceState: Bundle?) {
 
-//        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+//        var checkbox1 = 0
+//        fun sum(a: Int, b:Int): Int{
+//            return a + b
+//        }
 
         val objectives1 = mutableListOf("  전술/전략 물자 아무 조합 토큰 총 3개 소비  ", // 1번 임무 10개 리스트
             "  두 가지 색상 기술 각각 2개 보유  ",
@@ -48,7 +51,7 @@ class scoringboard : AppCompatActivity(){
 
 
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
-        setContentView(R.layout.activity_scoringboard) // setContentView(binding.root)이거였음
+        setContentView(R.layout.activity_scoringboard)
 
         val set: TreeSet<Int> = TreeSet()  // 임무 랜덤 분배
         while(set.size < 5){
@@ -149,7 +152,8 @@ class scoringboard : AppCompatActivity(){
             }
 
             val sb_spinner_mr_p1: Spinner = findViewById(R.id.sb_mr1) // 메카톨렉스 드랍다운 #1
-            ArrayAdapter.createFromResource(this, R.array.secret, android.R.layout.simple_spinner_item
+            ArrayAdapter.createFromResource(
+                this, R.array.secret, android.R.layout.simple_spinner_item
             ).also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 sb_spinner_mr_p1.adapter = adapter
@@ -157,9 +161,7 @@ class scoringboard : AppCompatActivity(){
 
             val sb_spinner_mr_p2: Spinner = findViewById(R.id.sb_mr2) // 메카톨렉스 드랍다운 #2
             ArrayAdapter.createFromResource(
-                this,
-                R.array.secret,
-                android.R.layout.simple_spinner_item
+                this, R.array.secret, android.R.layout.simple_spinner_item
             ).also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 sb_spinner_mr_p2.adapter = adapter
@@ -167,9 +169,7 @@ class scoringboard : AppCompatActivity(){
 
             val sb_spinner_mr_p3: Spinner = findViewById(R.id.sb_mr3) // 메카톨렉스 드랍다운 #3
             ArrayAdapter.createFromResource(
-                this,
-                R.array.secret,
-                android.R.layout.simple_spinner_item
+                this, R.array.secret, android.R.layout.simple_spinner_item
             ).also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 sb_spinner_mr_p3.adapter = adapter
@@ -177,9 +177,7 @@ class scoringboard : AppCompatActivity(){
 
             val sb_spinner_mr_p4: Spinner = findViewById(R.id.sb_mr4) // 메카톨렉스 드랍다운 #4
             ArrayAdapter.createFromResource(
-                this,
-                R.array.secret,
-                android.R.layout.simple_spinner_item
+                this, R.array.secret, android.R.layout.simple_spinner_item
             ).also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 sb_spinner_mr_p4.adapter = adapter
@@ -187,9 +185,7 @@ class scoringboard : AppCompatActivity(){
 
             val sb_spinner_mr_p5: Spinner = findViewById(R.id.sb_mr5) // 메카톨렉스 드랍다운 #5
             ArrayAdapter.createFromResource(
-                this,
-                R.array.secret,
-                android.R.layout.simple_spinner_item
+                this, R.array.secret, android.R.layout.simple_spinner_item
             ).also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 sb_spinner_mr_p5.adapter = adapter
@@ -197,9 +193,7 @@ class scoringboard : AppCompatActivity(){
 
             val sb_spinner_mr_p6: Spinner = findViewById(R.id.sb_mr6) // 메카톨렉스 드랍다운 #6
             ArrayAdapter.createFromResource(
-                this,
-                R.array.secret,
-                android.R.layout.simple_spinner_item
+                this, R.array.secret, android.R.layout.simple_spinner_item
             ).also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 sb_spinner_mr_p6.adapter = adapter
@@ -223,13 +217,17 @@ class scoringboard : AppCompatActivity(){
 
             }
         }
+
+
+
     }
+
+
 
     private fun initSpinners1(vararg spinners: Spinner) {
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, (0..10).toList())
         val listener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-//                val value = parent?.getItemAtPosition(position)?.toString()?.toIntOrNull() ?:0
                 updateSum1()
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -315,6 +313,8 @@ class scoringboard : AppCompatActivity(){
             spinner.onItemSelectedListener = listener
         }
     }
+
+
 
     private fun updateSum1() = with(binding) {
         val s1 = sb_secret1.selectedItem?.toString()?.toIntOrNull() ?:0
