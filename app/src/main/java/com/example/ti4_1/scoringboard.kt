@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
@@ -14,6 +15,8 @@ import android.widget.Spinner
 
 
 class scoringboard : AppCompatActivity(){
+// 체크박스 합 어레이리스트 선언
+    var sum_cbs = arrayListOf<Int>(0, 0, 0, 0, 0, 0)
 
     private lateinit var binding : ActivityMainBinding
 
@@ -21,9 +24,9 @@ class scoringboard : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
 
 //        var checkbox1 = 0
-//        fun sum(a: Int, b:Int): Int{
-//            return a + b
-//        }
+        fun sum(a: Int, b:Int): Int{
+            return a + b
+        }
 
         val objectives1 = mutableListOf("  전술/전략 물자 아무 조합 토큰 총 3개 소비  ", // 1번 임무 10개 리스트
             "  두 가지 색상 기술 각각 2개 보유  ",
@@ -89,6 +92,9 @@ class scoringboard : AppCompatActivity(){
                 obj_selected2.visibility = View.VISIBLE
             }
         }
+
+
+
         if (intent.hasExtra("number1")) { // 전 액티비티에서 고른 플레이어 수 만큼 플레이어 컬럼 숨김을 해제한다
             val player_num2 = intent.getStringExtra("number1")
 
@@ -199,13 +205,53 @@ class scoringboard : AppCompatActivity(){
                 sb_spinner_mr_p6.adapter = adapter
             }
 
-            initSpinners1(sb_spinner_mr_p1,sb_spinner_secret_p1)
-            initSpinners2(sb_spinner_mr_p2,sb_spinner_secret_p2)
-            initSpinners3(sb_spinner_mr_p3,sb_spinner_secret_p3)
-            initSpinners4(sb_spinner_mr_p4,sb_spinner_secret_p4)
-            initSpinners5(sb_spinner_mr_p5,sb_spinner_secret_p5)
-            initSpinners6(sb_spinner_mr_p6,sb_spinner_secret_p6)
+            // 리스트로 각 인자 묶어놓기
+            val sbs_mr = mutableListOf(sb_spinner_mr_p1, sb_spinner_mr_p2,sb_spinner_mr_p3,sb_spinner_mr_p4,sb_spinner_mr_p5,sb_spinner_mr_p6)
+            val sbs_secret = mutableListOf(sb_spinner_secret_p1, sb_spinner_secret_p2, sb_spinner_secret_p3, sb_spinner_secret_p4, sb_spinner_secret_p5, sb_spinner_secret_p6)
+            val sbs_sum = mutableListOf(sb_p1_sum, sb_p2_sum, sb_p3_sum, sb_p4_sum, sb_p5_sum, sb_p6_sum)
+            for (i in 1..6){
+                for (j in 1..10){
+                    val id_cb = "chk" + i +"_" +j
+                    val id2_cb: Int = resources.getIdentifier(id_cb, "id", packageName)
+                    val target_cb: CheckBox = findViewById<CheckBox>(id2_cb)
 
+                    if (j < 6){
+                            // 체크박스 선택/선택해제시 Int 값 불러오기
+                            target_cb.setOnCheckedChangeListener{_, isChecked ->
+                                if(isChecked){
+                                    sum_cbs.set(i-1, sum_cbs.get(i-1) + 1)
+                                } else {
+                                    sum_cbs.set(i-1, sum_cbs.get(i-1) - 1)
+                                }
+
+                                // 여기 있어야 체크박스 누를 떄마다 업데이트가 됨
+                                updateSum(sbs_mr[i-1], sbs_secret[i-1], sbs_sum[i-1], i-1)
+
+                            }
+                        } else {
+                            // 체크박스 선택/선택해제시 Int 값 불러오기
+                            target_cb.setOnCheckedChangeListener{_, isChecked ->
+                                if(isChecked){
+                                    sum_cbs.set(i-1, sum_cbs.get(i-1) + 2)
+                                } else {
+                                    sum_cbs.set(i-1, sum_cbs.get(i-1) - 2)
+                                }
+
+                                // 여기 있어야 체크박스 누를 떄마다 업데이트가 됨
+                                updateSum(sbs_mr[i-1], sbs_secret[i-1], sbs_sum[i-1], i-1)
+
+                            }
+                        }
+                }
+
+            }
+
+            initSpinners(sb_spinner_mr_p1,sb_spinner_secret_p1, sb_p1_sum, 0)
+            initSpinners(sb_spinner_mr_p2,sb_spinner_secret_p2, sb_p2_sum, 1)
+            initSpinners(sb_spinner_mr_p3,sb_spinner_secret_p3, sb_p3_sum, 2)
+            initSpinners(sb_spinner_mr_p4,sb_spinner_secret_p4, sb_p4_sum, 3)
+            initSpinners(sb_spinner_mr_p5,sb_spinner_secret_p5, sb_p5_sum, 4)
+            initSpinners(sb_spinner_mr_p6,sb_spinner_secret_p6, sb_p6_sum, 5)
 
             for (i in 1 until 7) {
                 val id = "sb_p$i"
@@ -216,137 +262,32 @@ class scoringboard : AppCompatActivity(){
                 }
 
             }
+
         }
-
-
-
     }
 
-
-
-    private fun initSpinners1(vararg spinners: Spinner) {
+    // 각 플레이어별 스피너 값 및 체크박스 합계를 인자로 하는 함수 선언
+    private fun initSpinners(sp_mr : Spinner, sp_secret: Spinner, sb_sum: TextView, idx: Int) {
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, (0..10).toList())
         val listener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                updateSum1()
+                updateSum(sp_mr, sp_secret, sb_sum, idx)
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
         }
-        for (spinner in spinners) {
-            spinner.adapter = adapter
-            spinner.onItemSelectedListener = listener
-        }
+        sp_mr.adapter = adapter
+        sp_mr.onItemSelectedListener = listener
+        sp_secret.adapter = adapter
+        sp_secret.onItemSelectedListener = listener
     }
-    private fun initSpinners2(vararg spinners: Spinner) {
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, (0..10).toList())
-        val listener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-//                val value = parent?.getItemAtPosition(position)?.toString()?.toIntOrNull() ?:0
-                updateSum2()
-            }
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-            }
-        }
-        for (spinner in spinners) {
-            spinner.adapter = adapter
-            spinner.onItemSelectedListener = listener
-        }
+    // 각 플레이어별 스피너 값 및 체크박스 합계를 인자로 하는 함수 선언
+    private fun updateSum(sb_mr : Spinner, sb_secret : Spinner, sb_sum: TextView, idx: Int) = with(binding) {
+        val s1 = sb_secret.selectedItem?.toString()?.toIntOrNull() ?:0
+        val s2 = sb_mr.selectedItem?.toString()?.toIntOrNull() ?:0
+        val s3 = sum_cbs.get(idx)
+        sb_sum.text = (s1 + s2 + s3).toString()
     }
-    private fun initSpinners3(vararg spinners: Spinner) {
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, (0..10).toList())
-        val listener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-//                val value = parent?.getItemAtPosition(position)?.toString()?.toIntOrNull() ?:0
-                updateSum3()
-            }
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-            }
-        }
-        for (spinner in spinners) {
-            spinner.adapter = adapter
-            spinner.onItemSelectedListener = listener
-        }
-    }
-    private fun initSpinners4(vararg spinners: Spinner) {
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, (0..10).toList())
-        val listener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-//                val value = parent?.getItemAtPosition(position)?.toString()?.toIntOrNull() ?:0
-                updateSum4()
-            }
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-            }
-        }
-        for (spinner in spinners) {
-            spinner.adapter = adapter
-            spinner.onItemSelectedListener = listener
-        }
-    }
-    private fun initSpinners5(vararg spinners: Spinner) {
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, (0..10).toList())
-        val listener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-//                val value = parent?.getItemAtPosition(position)?.toString()?.toIntOrNull() ?:0
-                updateSum5()
-            }
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-            }
-        }
-        for (spinner in spinners) {
-            spinner.adapter = adapter
-            spinner.onItemSelectedListener = listener
-        }
-    }
-    private fun initSpinners6(vararg spinners: Spinner) {
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, (0..10).toList())
-        val listener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-//                val value = parent?.getItemAtPosition(position)?.toString()?.toIntOrNull() ?:0
-                updateSum6()
-            }
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-            }
-        }
-        for (spinner in spinners) {
-            spinner.adapter = adapter
-            spinner.onItemSelectedListener = listener
-        }
-    }
-
-
-
-    private fun updateSum1() = with(binding) {
-        val s1 = sb_secret1.selectedItem?.toString()?.toIntOrNull() ?:0
-        val s2 = sb_mr1.selectedItem?.toString()?.toIntOrNull() ?:0
-        sb_p1_sum.text = (s1 + s2).toString()
-    }
-    private fun updateSum2() = with(binding) {
-        val s1 = sb_secret2.selectedItem?.toString()?.toIntOrNull() ?:0
-        val s2 = sb_mr2.selectedItem?.toString()?.toIntOrNull() ?:0
-        sb_p2_sum.text = (s1 + s2).toString()
-    }
-    private fun updateSum3() = with(binding) {
-        val s1 = sb_secret3.selectedItem?.toString()?.toIntOrNull() ?:0
-        val s2 = sb_mr3.selectedItem?.toString()?.toIntOrNull() ?:0
-        sb_p3_sum.text = (s1 + s2).toString()
-    }
-    private fun updateSum4() = with(binding) {
-        val s1 = sb_secret4.selectedItem?.toString()?.toIntOrNull() ?:0
-        val s2 = sb_mr4.selectedItem?.toString()?.toIntOrNull() ?:0
-        sb_p4_sum.text = (s1 + s2).toString()
-    }
-    private fun updateSum5() = with(binding) {
-        val s1 = sb_secret5.selectedItem?.toString()?.toIntOrNull() ?:0
-        val s2 = sb_mr5.selectedItem?.toString()?.toIntOrNull() ?:0
-        sb_p5_sum.text = (s1 + s2).toString()
-    }
-    private fun updateSum6() = with(binding) {
-        val s1 = sb_secret6.selectedItem?.toString()?.toIntOrNull() ?:0
-        val s2 = sb_mr6.selectedItem?.toString()?.toIntOrNull() ?:0
-        sb_p6_sum.text = (s1 + s2).toString()
-    }
-
 
 }
 

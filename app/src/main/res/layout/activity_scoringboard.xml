@@ -266,7 +266,7 @@
                 android:layout_height="45dp"
                 android:background="@drawable/border1"
                 android:gravity="center"
-                android:text="메카톨렉스 승점"
+                android:text="비밀목표 승점"
                 android:textSize="24sp"
                 tools:layout_gravity="center" />
 
@@ -276,7 +276,7 @@
                 android:layout_height="45dp"
                 android:background="@drawable/border1"
                 android:gravity="center"
-                android:text="비밀목표카드"
+                android:text="메카톨렉스 승점"
                 android:textSize="24sp"
                 tools:layout_gravity="center" />
 
@@ -1269,6 +1269,15 @@
         android:textSize="0.01sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="1074dp"
+        tools:layout_editor_absoluteY="222dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
