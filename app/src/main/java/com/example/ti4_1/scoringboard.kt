@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.activity_scoringboard.*
 import java.util.*
 import com.example.ti4_1.databinding.ActivityMainBinding
 import android.widget.Spinner
+import kotlin.String as String1
 
 
 class scoringboard : AppCompatActivity(){
@@ -209,7 +210,10 @@ class scoringboard : AppCompatActivity(){
             val sbs_mr = mutableListOf(sb_spinner_mr_p1, sb_spinner_mr_p2,sb_spinner_mr_p3,sb_spinner_mr_p4,sb_spinner_mr_p5,sb_spinner_mr_p6)
             val sbs_secret = mutableListOf(sb_spinner_secret_p1, sb_spinner_secret_p2, sb_spinner_secret_p3, sb_spinner_secret_p4, sb_spinner_secret_p5, sb_spinner_secret_p6)
             val sbs_sum = mutableListOf(sb_p1_sum, sb_p2_sum, sb_p3_sum, sb_p4_sum, sb_p5_sum, sb_p6_sum)
-            for (i in 1..6){
+            val sbsecret = mutableListOf(sb_secret1,sb_secret2,sb_secret3,sb_secret4,sb_secret5,sb_secret6)
+
+
+                for (i in 1..6){
                 for (j in 1..10){
                     val id_cb = "chk" + i +"_" +j
                     val id2_cb: Int = resources.getIdentifier(id_cb, "id", packageName)
@@ -223,10 +227,8 @@ class scoringboard : AppCompatActivity(){
                                 } else {
                                     sum_cbs.set(i-1, sum_cbs.get(i-1) - 1)
                                 }
-
                                 // 여기 있어야 체크박스 누를 떄마다 업데이트가 됨
                                 updateSum(sbs_mr[i-1], sbs_secret[i-1], sbs_sum[i-1], i-1)
-
                             }
                         } else {
                             // 체크박스 선택/선택해제시 Int 값 불러오기
@@ -236,14 +238,11 @@ class scoringboard : AppCompatActivity(){
                                 } else {
                                     sum_cbs.set(i-1, sum_cbs.get(i-1) - 2)
                                 }
-
                                 // 여기 있어야 체크박스 누를 떄마다 업데이트가 됨
                                 updateSum(sbs_mr[i-1], sbs_secret[i-1], sbs_sum[i-1], i-1)
-
                             }
                         }
                 }
-
             }
 
             initSpinners(sb_spinner_mr_p1,sb_spinner_secret_p1, sb_p1_sum, 0)
@@ -260,9 +259,7 @@ class scoringboard : AppCompatActivity(){
                 if (intent.hasExtra("p" + (i) + "name")) {
                     textView.text = intent.getStringExtra("p" + (i) + "name")
                 }
-
             }
-
         }
     }
 
@@ -288,7 +285,6 @@ class scoringboard : AppCompatActivity(){
         val s3 = sum_cbs.get(idx)
         sb_sum.text = (s1 + s2 + s3).toString()
     }
-
 }
 
 
