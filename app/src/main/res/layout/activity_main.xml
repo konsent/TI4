@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:text="새 게임"
         android:textSize="30sp"
-        android:fontFamily="@font/bm"
+
         android:textColor="#FFFFFF"
         android:paddingBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -30,7 +30,7 @@
         android:text="불러오기"
         android:textSize="30sp"
         android:paddingBottom="10dp"
-        android:fontFamily="@font/bm"
+
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +44,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="설정"
-        android:fontFamily="@font/bm"
+
         android:paddingBottom="10dp"
         android:textSize="30sp"
         android:textColor="#FFFFFF"

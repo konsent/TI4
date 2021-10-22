@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="150dp"
-        android:fontFamily="@font/bm"
+
         android:text="새 게임"
         android:paddingBottom="10dp"
         android:textAlignment="center"
@@ -43,12 +43,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:fontFamily="@font/bm"
+
             android:padding="10dp"
             android:text="인원 수를 선택하세요"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:textSize="20sp"
+            android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/newgame_header" />
@@ -64,15 +64,14 @@
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_players"
-            tools:ignore="SpeakableTextPresentCheck" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_players"/>
 
         <TextView
             android:id="@+id/tv_players2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:fontFamily="@font/bm"
+
             android:padding="10dp"
             android:text="승점을 선택하세요"
             android:textAlignment="center"
@@ -95,8 +94,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_players2"
-            tools:ignore="SpeakableTextPresentCheck" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_players2"/>
 
 
     </LinearLayout>
@@ -109,7 +107,7 @@
         android:textColor="#FFFFFF"
         android:paddingBottom="10dp"
         android:textSize="30sp"
-        android:fontFamily="@font/bm"
+
         android:layout_marginBottom="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

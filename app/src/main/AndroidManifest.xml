@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TI4_1">
         <activity
+            android:name=".scoringboard3"
+            android:exported="true" />
+        <activity
             android:name=".scoringboard2"
             android:exported="true" />
 

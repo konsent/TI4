@@ -13,7 +13,7 @@
         android:id="@+id/newgame_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/bm"
+
         android:text="플레이어"
         android:paddingBottom="10dp"
         android:textAlignment="center"
@@ -122,7 +122,7 @@
         android:text="다음으로"
         android:textColor="#FFFFFF"
         android:paddingBottom="10dp"
-        android:fontFamily="@font/bm"
+
         android:textSize="30sp"
         android:layout_marginBottom="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
