@@ -94,8 +94,6 @@ class scoringboard : AppCompatActivity(){
             }
         }
 
-
-
         if (intent.hasExtra("number1")) { // 전 액티비티에서 고른 플레이어 수 만큼 플레이어 컬럼 숨김을 해제한다
             val player_num2 = intent.getStringExtra("number1")
 
@@ -110,6 +108,21 @@ class scoringboard : AppCompatActivity(){
                 linearLayout6.visibility = View.VISIBLE
             }
 
+//            for (i in 1 until 7) {
+//                val id = "sb_p$i"
+//                val idd: Int = resources.getIdentifier(id, "id", packageName)
+//                val textView: TextView = findViewById<TextView>(idd)
+//                if (intent.hasExtra("p" + (i) + "name")) {
+//                    textView.text = intent.getStringExtra("p" + (i) + "name")
+//                }
+//            }
+
+//            for(i in 1..7){
+//                val sb_spinner = "sb_spinner_secret_p$i"
+//                val sbsecret = "sb_secret$i"
+//                val sb_spinner_resId = resources.getIdentifier(sb_spinner,"id", packageName)
+//                val sbsecret_resId = resources.getIdentifier(sbsecret,"id", packageName)
+//            }
 
             val sb_spinner_secret_p1: Spinner = findViewById(R.id.sb_secret1) // 비밀목표 드랍다운 #1
             ArrayAdapter.createFromResource(this, R.array.secret, android.R.layout.simple_spinner_item
