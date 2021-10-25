@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         main_btn_loadgame.setOnClickListener {
-            val intent = Intent(this, scoringboard2::class.java)
+            val intent = Intent(this, scoringboard3::class.java)
             startActivity(intent)
         }
     }
