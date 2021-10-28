@@ -313,6 +313,18 @@
         android:layout_row="11"
         android:layout_column="5"/>
 
+    <Spinner
+        android:id="@+id/sb_mr1"
+        style="@style/spinner"
+        android:layout_row="12"
+        android:layout_column="5" />
+
+    <Spinner
+        android:id="@+id/sb_secret1"
+        style="@style/spinner"
+        android:layout_row="13"
+        android:layout_column="5" />
+
     <CheckBox
         android:id="@+id/chk2_1"
         style="@style/checkbox1"
@@ -372,6 +384,18 @@
         style="@style/checkbox2"
         android:layout_row="11"
         android:layout_column="6"/>
+
+    <Spinner
+        android:id="@+id/sb_mr2"
+        style="@style/spinner"
+        android:layout_row="12"
+        android:layout_column="6" />
+
+    <Spinner
+        android:id="@+id/sb_secret2"
+        style="@style/spinner"
+        android:layout_row="13"
+        android:layout_column="6" />
 
     <CheckBox
         android:id="@+id/chk3_1"
@@ -433,6 +457,18 @@
         android:layout_row="11"
         android:layout_column="7"/>
 
+    <Spinner
+        android:id="@+id/sb_mr3"
+        style="@style/spinner"
+        android:layout_row="12"
+        android:layout_column="7" />
+
+    <Spinner
+        android:id="@+id/sb_secret3"
+        style="@style/spinner"
+        android:layout_row="13"
+        android:layout_column="7" />
+
     <CheckBox
         android:id="@+id/chk4_1"
         style="@style/checkbox1"
@@ -493,6 +529,18 @@
         android:layout_row="11"
         android:layout_column="8"/>
 
+    <Spinner
+        android:id="@+id/sb_mr4"
+        style="@style/spinner"
+        android:layout_row="12"
+        android:layout_column="8" />
+
+    <Spinner
+        android:id="@+id/sb_secret4"
+        style="@style/spinner"
+        android:layout_row="13"
+        android:layout_column="8" />
+
     <CheckBox
         android:id="@+id/chk5_1"
         style="@style/checkbox1"
@@ -552,6 +600,18 @@
         style="@style/checkbox2"
         android:layout_row="11"
         android:layout_column="9"/>
+
+    <Spinner
+        android:id="@+id/sb_mr5"
+        style="@style/spinner"
+        android:layout_row="12"
+        android:layout_column="9" />
+
+    <Spinner
+        android:id="@+id/sb_secret5"
+        style="@style/spinner"
+        android:layout_row="13"
+        android:layout_column="9" />
 
     <CheckBox
         android:id="@+id/chk6_1"
@@ -614,18 +674,18 @@
         android:layout_column="10"/>
 
     <Spinner
-        android:id="@+id/spinner2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/sb_mr6"
+        style="@style/spinner"
         android:layout_row="12"
-        android:layout_column="4" />
+        android:layout_column="10" />
 
     <Spinner
-        android:id="@+id/spinner3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/sb_secret6"
+        style="@style/spinner"
         android:layout_row="13"
-        android:layout_column="4" />
+        android:layout_column="10" />
+
+
 
     <TextView
         android:id="@+id/sb_p1_sum"
