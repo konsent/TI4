@@ -34,7 +34,7 @@ class newplayers : AppCompatActivity() {
         sub_btn_newgame2.setOnClickListener { // 플레이어 이름 기록 후 다음 액티비티로 넘기기
             if (intent.hasExtra("number1")){
                 val player_num = intent.getStringExtra("number1")
-                val intent3 = Intent(this, scoringboard::class.java)
+                val intent3 = Intent(this, scoringboard3::class.java)
                 intent3.putExtra("p1name", players_p1.text.toString())
                 intent3.putExtra("p2name", players_p2.text.toString())
                 intent3.putExtra("p3name", players_p3.text.toString())
