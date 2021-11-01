@@ -23,6 +23,8 @@ import kotlinx.android.synthetic.main.activity_scoringboard.sb_secret5
 import kotlinx.android.synthetic.main.activity_scoringboard.sb_secret6
 import kotlinx.android.synthetic.main.activity_scoringboard3.*
 import java.util.*
+import kotlinx.android.synthetic.main.activity_scoringboard.sb_mr5 as sb_mr51
+import kotlinx.android.synthetic.main.activity_scoringboard3.sb_mr6 as sb_mr61
 
 class scoringboard3 : AppCompatActivity() {
 
@@ -105,20 +107,15 @@ class scoringboard3 : AppCompatActivity() {
         if (intent.hasExtra("number1")) { // 전 액티비티에서 고른 플레이어 수 만큼 플레이어 컬럼 숨김을 해제한다
             val player_num2 = intent.getStringExtra("number1")
 
-//            for (i in 1 until 7) {
-//                val id = "sb_p$i"
-//                val idd: Int = resources.getIdentifier(id, "id", packageName)
-//                val textView: TextView = findViewById<TextView>(idd)
-//                if (intent.hasExtra("p" + (i) + "name")) {
-//                    textView.text = intent.getStringExtra("p" + (i) + "name")
-
             if (player_num2.equals("4")) {
-                sb_p4_sum
                 for(i in 1..10){
                     val chk4 = "chk4_$i"
                     val chk44 : Int = resources.getIdentifier(chk4, "id", packageName)
                     val chk444: CheckBox = findViewById<CheckBox>(chk44)
                     chk444.visibility = View.VISIBLE}
+                    sb_secret4.visibility = View.VISIBLE
+                    sb_mr4.visibility = View.VISIBLE
+                    sb_p4_sum.visibility = View.VISIBLE
 
 
             } else if (player_num2.equals("5")) {
@@ -127,12 +124,18 @@ class scoringboard3 : AppCompatActivity() {
                     val chk44 : Int = resources.getIdentifier(chk4, "id", packageName)
                     val chk444: CheckBox = findViewById<CheckBox>(chk44)
                     chk444.visibility = View.VISIBLE}
+                    sb_secret4.visibility = View.VISIBLE
+                    sb_mr4.visibility = View.VISIBLE
+                    sb_p4_sum.visibility = View.VISIBLE
 
                 for(i in 1..10){
                     val chk5 = "chk5_$i"
                     val chk55 : Int = resources.getIdentifier(chk5, "id", packageName)
                     val chk555: CheckBox = findViewById<CheckBox>(chk55)
                     chk555.visibility = View.VISIBLE}
+                    sb_secret5.visibility = View.VISIBLE
+                    sb_mr5.visibility = View.VISIBLE
+                    sb_p5_sum.visibility = View.VISIBLE
 
 
             } else if (player_num2.equals("6")) {
@@ -141,18 +144,27 @@ class scoringboard3 : AppCompatActivity() {
                     val chk44 : Int = resources.getIdentifier(chk4, "id", packageName)
                     val chk444: CheckBox = findViewById<CheckBox>(chk44)
                     chk444.visibility = View.VISIBLE}
+                    sb_secret4.visibility = View.VISIBLE
+                    sb_mr4.visibility = View.VISIBLE
+                    sb_p4_sum.visibility = View.VISIBLE
 
                 for(i in 1..10){
                     val chk5 = "chk5_$i"
                     val chk55 : Int = resources.getIdentifier(chk5, "id", packageName)
                     val chk555: CheckBox = findViewById<CheckBox>(chk55)
                     chk555.visibility = View.VISIBLE}
+                    sb_secret5.visibility = View.VISIBLE
+                    sb_mr5.visibility = View.VISIBLE
+                    sb_p5_sum.visibility = View.VISIBLE
 
                 for(i in 1..10){
                     val chk6 = "chk6_$i"
                     val chk66 : Int = resources.getIdentifier(chk6, "id", packageName)
                     val chk666: CheckBox = findViewById<CheckBox>(chk66)
                     chk666.visibility = View.VISIBLE}
+                    sb_secret6.visibility = View.VISIBLE
+                    sb_p6_sum.visibility = View.VISIBLE
+                    sb_mr6.visibility = View.VISIBLE
             }
 
             val sb_spinner_secret_p1: Spinner = findViewById(R.id.sb_secret1) // 비밀목표 드랍다운 #1

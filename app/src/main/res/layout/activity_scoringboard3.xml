@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:columnCount="20"
+    android:background="@drawable/border3"
     android:rowCount="20"
     tools:context=".scoringboard3">
 
