@@ -3,6 +3,7 @@ package com.example.ti4_1
 import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 
 import android.view.LayoutInflater
 import android.view.View
@@ -34,6 +35,7 @@ import kotlinx.android.synthetic.main.activity_scoringboard3.sb_p6 as sb_p61
 class scoringboard3 : AppCompatActivity() {
 
     var sum_cbs = arrayListOf<Int>(0, 0, 0, 0, 0, 0)
+    var winner = ""
 
     private lateinit var binding: ActivityMainBinding
     lateinit var alertDialog : AlertDialog
@@ -307,6 +309,11 @@ class scoringboard3 : AppCompatActivity() {
                             }
                             // 여기 있어야 체크박스 누를 떄마다 업데이트가 됨
                             updateSum(sbs_mr[i - 1], sbs_secret[i - 1], sbs_sum[i - 1], i - 1)
+                            for(k in 1..6){
+                                if(sum_cbs[k-1] >= 10){
+                                    getAlertShow(k)
+                                }
+                            }
                         }
                     } else {
                         // 체크박스 선택/선택해제시 Int 값 불러오기
@@ -318,6 +325,11 @@ class scoringboard3 : AppCompatActivity() {
                             }
                             // 여기 있어야 체크박스 누를 떄마다 업데이트가 됨
                             updateSum(sbs_mr[i - 1], sbs_secret[i - 1], sbs_sum[i - 1], i - 1)
+                            for(k in 1..6){
+                                if(sum_cbs[k-1] >= 10){
+                                    getAlertShow(k)
+                                }
+                            }
                         }
                     }
                 }
@@ -365,26 +377,30 @@ class scoringboard3 : AppCompatActivity() {
         sb_sum.text = (s1 + s2 + s3).toString()
         }
 
-    private fun getAlertShow(){
+    private fun getAlertShow(position: Int){
         try{
-            var str_tittle = "승리하셨습니다."
-            var str_message = "내용"
-            var str_buttonOK = "확인"
-            var str_buttonNO = "취소"
-            var str_buttonNature = "이동"
+            val playerName = "sb_p$position"
+            val playerNameId : Int = resources.getIdentifier(playerName,"id",packageName)
+            val playerNameIdd = findViewById<TextView>(playerNameId)
+            winner = playerNameIdd.text.toString()
+            var str_title = winner
+            var str_message = "승리하셨습니다."
+            var str_btnOK = "확인"
+            var str_btnNO = "취소"
+            var str_btnNature = "이동"
 
             builder = AlertDialog.Builder(this@scoringboard3)
-            builder.setTitle(str_tittle) //팝업창 타이틀 지정
+            builder.setTitle(str_title) //팝업창 타이틀 지정
             builder.setIcon(R.drawable.victory) //팝업창 아이콘 지정
             builder.setMessage(str_message) //팝업창 내용 지정
             builder.setCancelable(false) //외부 레이아웃 클릭시도 팝업창이 사라지지않게 설정
-            builder.setPositiveButton(str_buttonOK, DialogInterface.OnClickListener { dialog, which ->
+            builder.setPositiveButton(str_btnOK, DialogInterface.OnClickListener { dialog, which ->
                 Toast.makeText(application, "확인", Toast.LENGTH_SHORT).show()
             })
-            builder.setNegativeButton(str_buttonNO, DialogInterface.OnClickListener { dialog, which ->
+            builder.setNegativeButton(str_btnNO, DialogInterface.OnClickListener { dialog, which ->
                 Toast.makeText(application, "취소", Toast.LENGTH_SHORT).show()
             })
-            builder.setNeutralButton(str_buttonNature, DialogInterface.OnClickListener { dialog, which ->
+            builder.setNeutralButton(str_btnNature, DialogInterface.OnClickListener { dialog, which ->
                 Toast.makeText(application, "이동", Toast.LENGTH_SHORT).show()
             })
             alertDialog = builder.create()
