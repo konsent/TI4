@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
-import com.example.ti4_1.databinding.ActivityMainBinding
+//import com.example.ti4_1.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_loadingscreen.view.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_newgame1.*
@@ -19,7 +19,7 @@ class newgame_1 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_newgame1)
 
-        val Spinner: Spinner = findViewById(R.id.spinner_players) // 플레이어 수 드롭다운 스피너 메뉴
+        val Spinner: Spinner = findViewById(R.id.spinner_players) // P 수 드롭다운 스피너 메뉴
         ArrayAdapter.createFromResource(
             this,
             R.array.players_number,

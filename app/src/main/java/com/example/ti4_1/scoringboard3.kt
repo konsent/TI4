@@ -1,11 +1,13 @@
 package com.example.ti4_1
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import com.example.ti4_1.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_scoringboard.*
 import kotlinx.android.synthetic.main.activity_scoringboard.sb_mr4
@@ -24,13 +26,18 @@ import kotlinx.android.synthetic.main.activity_scoringboard.sb_secret6
 import kotlinx.android.synthetic.main.activity_scoringboard3.*
 import java.util.*
 import kotlinx.android.synthetic.main.activity_scoringboard.sb_mr5 as sb_mr51
+import kotlinx.android.synthetic.main.activity_scoringboard.sb_p5 as sb_p51
 import kotlinx.android.synthetic.main.activity_scoringboard3.sb_mr6 as sb_mr61
+import kotlinx.android.synthetic.main.activity_scoringboard3.sb_p4 as sb_p41
+import kotlinx.android.synthetic.main.activity_scoringboard3.sb_p6 as sb_p61
 
 class scoringboard3 : AppCompatActivity() {
 
     var sum_cbs = arrayListOf<Int>(0, 0, 0, 0, 0, 0)
 
     private lateinit var binding: ActivityMainBinding
+    lateinit var alertDialog : AlertDialog
+    lateinit var builder : AlertDialog.Builder
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -57,7 +64,7 @@ class scoringboard3 : AppCompatActivity() {
             "  기술 전문화 행성 5개 점령  ",
             "  4가지 색상의 기술 각각 2개씩 보유  ",
             "  영향력 16 소비  ",
-            "  다른 플레이어의 고향 성계 행성 1개 점령  "
+            "  다른 P의 고향 성계 행성 1개 점령  "
         )
 
         super.onCreate(savedInstanceState)
@@ -104,8 +111,9 @@ class scoringboard3 : AppCompatActivity() {
             }
         }
 
-        if (intent.hasExtra("number1")) { // 전 액티비티에서 고른 플레이어 수 만큼 플레이어 컬럼 숨김을 해제한다
+        if (intent.hasExtra("number1")) { // 전 액티비티에서 고른 P 수 만큼 P 컬럼 숨김을 해제한다
             val player_num2 = intent.getStringExtra("number1")
+
 
             if (player_num2.equals("4")) {
                 for(i in 1..10){
@@ -116,6 +124,7 @@ class scoringboard3 : AppCompatActivity() {
                     sb_secret4.visibility = View.VISIBLE
                     sb_mr4.visibility = View.VISIBLE
                     sb_p4_sum.visibility = View.VISIBLE
+                    sb_p4.visibility = View.VISIBLE
 
 
             } else if (player_num2.equals("5")) {
@@ -127,6 +136,7 @@ class scoringboard3 : AppCompatActivity() {
                     sb_secret4.visibility = View.VISIBLE
                     sb_mr4.visibility = View.VISIBLE
                     sb_p4_sum.visibility = View.VISIBLE
+                    sb_p4.visibility = View.VISIBLE
 
                 for(i in 1..10){
                     val chk5 = "chk5_$i"
@@ -136,6 +146,7 @@ class scoringboard3 : AppCompatActivity() {
                     sb_secret5.visibility = View.VISIBLE
                     sb_mr5.visibility = View.VISIBLE
                     sb_p5_sum.visibility = View.VISIBLE
+                    sb_p5.visibility = View.VISIBLE
 
 
             } else if (player_num2.equals("6")) {
@@ -147,6 +158,7 @@ class scoringboard3 : AppCompatActivity() {
                     sb_secret4.visibility = View.VISIBLE
                     sb_mr4.visibility = View.VISIBLE
                     sb_p4_sum.visibility = View.VISIBLE
+                    sb_p4.visibility = View.VISIBLE
 
                 for(i in 1..10){
                     val chk5 = "chk5_$i"
@@ -156,6 +168,7 @@ class scoringboard3 : AppCompatActivity() {
                     sb_secret5.visibility = View.VISIBLE
                     sb_mr5.visibility = View.VISIBLE
                     sb_p5_sum.visibility = View.VISIBLE
+                    sb_p5.visibility = View.VISIBLE
 
                 for(i in 1..10){
                     val chk6 = "chk6_$i"
@@ -165,6 +178,7 @@ class scoringboard3 : AppCompatActivity() {
                     sb_secret6.visibility = View.VISIBLE
                     sb_p6_sum.visibility = View.VISIBLE
                     sb_mr6.visibility = View.VISIBLE
+                    sb_p6.visibility = View.VISIBLE
             }
 
             val sb_spinner_secret_p1: Spinner = findViewById(R.id.sb_secret1) // 비밀목표 드랍다운 #1
@@ -267,17 +281,15 @@ class scoringboard3 : AppCompatActivity() {
                 sb_spinner_secret_p5,
                 sb_spinner_secret_p6
             )
-            val sbs_sum =
-                mutableListOf(sb_p1_sum, sb_p2_sum, sb_p3_sum, sb_p4_sum, sb_p5_sum, sb_p6_sum)
-
-            val sbsecret = mutableListOf(
-                sb_secret1,
-                sb_secret2,
-                sb_secret3,
-                sb_secret4,
-                sb_secret5,
-                sb_secret6
+            val sbs_sum = mutableListOf(
+                sb_p1_sum,
+                sb_p2_sum,
+                sb_p3_sum,
+                sb_p4_sum,
+                sb_p5_sum,
+                sb_p6_sum
             )
+
 
             for (i in 1..6) {
                 for (j in 1..10) {
@@ -317,6 +329,8 @@ class scoringboard3 : AppCompatActivity() {
             initSpinners(sb_spinner_mr_p5, sb_spinner_secret_p5, sb_p5_sum, 4)
             initSpinners(sb_spinner_mr_p6, sb_spinner_secret_p6, sb_p6_sum, 5)
 
+
+
             for (i in 1 until 7) {
                 val id = "sb_p$i"
                 val idd: Int = resources.getIdentifier(id, "id", packageName)
@@ -343,11 +357,46 @@ class scoringboard3 : AppCompatActivity() {
         sp_secret.onItemSelectedListener = listener
     }
 
-    // 각 플레이어별 스피너 값 및 체크박스 합계를 인자로 하는 함수 선언
+    // 각 P별 스피너 값 및 체크박스 합계를 인자로 하는 함수 선언
     private fun updateSum(sb_mr: Spinner, sb_secret: Spinner, sb_sum: TextView, idx: Int) = with(binding) {
         val s1 = sb_secret.selectedItem?.toString()?.toIntOrNull() ?: 0
         val s2 = sb_mr.selectedItem?.toString()?.toIntOrNull() ?: 0
         val s3 = sum_cbs.get(idx)
         sb_sum.text = (s1 + s2 + s3).toString()
         }
+
+    private fun getAlertShow(){
+        try{
+            var str_tittle = "승리하셨습니다."
+            var str_message = "내용"
+            var str_buttonOK = "확인"
+            var str_buttonNO = "취소"
+            var str_buttonNature = "이동"
+
+            builder = AlertDialog.Builder(this@scoringboard3)
+            builder.setTitle(str_tittle) //팝업창 타이틀 지정
+            builder.setIcon(R.drawable.victory) //팝업창 아이콘 지정
+            builder.setMessage(str_message) //팝업창 내용 지정
+            builder.setCancelable(false) //외부 레이아웃 클릭시도 팝업창이 사라지지않게 설정
+            builder.setPositiveButton(str_buttonOK, DialogInterface.OnClickListener { dialog, which ->
+                Toast.makeText(application, "확인", Toast.LENGTH_SHORT).show()
+            })
+            builder.setNegativeButton(str_buttonNO, DialogInterface.OnClickListener { dialog, which ->
+                Toast.makeText(application, "취소", Toast.LENGTH_SHORT).show()
+            })
+            builder.setNeutralButton(str_buttonNature, DialogInterface.OnClickListener { dialog, which ->
+                Toast.makeText(application, "이동", Toast.LENGTH_SHORT).show()
+            })
+            alertDialog = builder.create()
+            try {
+                alertDialog.show()
+            }
+            catch (e : Exception){
+                e.printStackTrace()
+            }
+        }
+        catch(e : Exception){
+            e.printStackTrace()
+        }
+    }
 }

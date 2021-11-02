@@ -44,7 +44,7 @@ class scoringboard : AppCompatActivity(){
             "  기술 전문화 행성 5개 점령  ",
             "  4가지 색상의 기술 각각 2개씩 보유  ",
             "  영향력 16 소비  ",
-            "  다른 플레이어의 고향 성계 행성 1개 점령  ")
+            "  다른 P의 고향 성계 행성 1개 점령  ")
 
         super.onCreate(savedInstanceState)
 
@@ -88,7 +88,7 @@ class scoringboard : AppCompatActivity(){
             }
         }
 
-        if (intent.hasExtra("number1")) { // 전 액티비티에서 고른 플레이어 수 만큼 플레이어 컬럼 숨김을 해제한다
+        if (intent.hasExtra("number1")) { // 전 액티비티에서 고른 P 수 만큼 P 컬럼 숨김을 해제한다
             val player_num2 = intent.getStringExtra("number1")
 
             if (player_num2.equals("4")) {
@@ -255,7 +255,7 @@ class scoringboard : AppCompatActivity(){
         }
     }
 
-    // 각 플레이어별 스피너 값 및 체크박스 합계를 인자로 하는 함수 선언
+    // 각 P별 스피너 값 및 체크박스 합계를 인자로 하는 함수 선언
     private fun initSpinners(sp_mr : Spinner, sp_secret: Spinner, sb_sum: TextView, idx: Int) {
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, (0..10).toList())
         val listener = object : AdapterView.OnItemSelectedListener {
@@ -270,7 +270,7 @@ class scoringboard : AppCompatActivity(){
         sp_secret.adapter = adapter
         sp_secret.onItemSelectedListener = listener
     }
-    // 각 플레이어별 스피너 값 및 체크박스 합계를 인자로 하는 함수 선언
+    // 각 P별 스피너 값 및 체크박스 합계를 인자로 하는 함수 선언
     private fun updateSum(sb_mr : Spinner, sb_secret : Spinner, sb_sum: TextView, idx: Int) = with(binding) {
         val s1 = sb_secret.selectedItem?.toString()?.toIntOrNull() ?:0
         val s2 = sb_mr.selectedItem?.toString()?.toIntOrNull() ?:0
