@@ -42,7 +42,7 @@ class scoringboard3 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         val objectives1 = mutableListOf(
-            "전술/전략 물자 아무 조합 토큰 총 3개 소비", // 1번 임무 10개 리스트
+            "  전술/전략 물자 아무 조합 토큰 총 3개 소비  ", // 1번 임무 10개 리스트
             "  두 가지 색상 기술 각각 2개 보유  ",
             "  동일 특성 행성 4개 점령  ",
             "  기술 전문화 행성 3개 점령  ",
@@ -64,7 +64,7 @@ class scoringboard3 : AppCompatActivity() {
             "  기술 전문화 행성 5개 점령  ",
             "  4가지 색상의 기술 각각 2개씩 보유  ",
             "  영향력 16 소비  ",
-            "  다른 P의 고향 성계 행성 1개 점령  "
+            "  다른 플레이어의 고향 성계 행성 1개 점령  "
         )
 
         super.onCreate(savedInstanceState)
