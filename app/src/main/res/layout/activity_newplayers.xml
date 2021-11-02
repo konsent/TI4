@@ -14,8 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:text="플레이어"
         android:paddingBottom="10dp"
+        android:text="플레이어"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
@@ -23,10 +23,10 @@
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.302" />
+        app:layout_constraintVertical_bias="0.189" />
 
     <TextView
         android:id="@+id/header2"
