@@ -31,11 +31,15 @@ import kotlinx.android.synthetic.main.activity_scoringboard.sb_p5 as sb_p51
 import kotlinx.android.synthetic.main.activity_scoringboard3.sb_mr6 as sb_mr61
 import kotlinx.android.synthetic.main.activity_scoringboard3.sb_p4 as sb_p41
 import kotlinx.android.synthetic.main.activity_scoringboard3.sb_p6 as sb_p61
+import kotlin.toString as toString1
 
 class scoringboard3 : AppCompatActivity() {
 
     var sum_cbs = arrayListOf<Int>(0, 0, 0, 0, 0, 0)
     var winner = ""
+    var winPoint = ""
+
+
 
     private lateinit var binding: ActivityMainBinding
     lateinit var alertDialog : AlertDialog
@@ -73,6 +77,11 @@ class scoringboard3 : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(R.layout.activity_scoringboard3)
+
+        if (intent.hasExtra("number2")) { // newgame_1.kt에서 설정한 승점(10/14점)을 가져온다
+            val winPointNum = intent.getStringExtra("number2")
+            Log.d("text11", winPointNum!!.toString())
+        }
 
         val set: TreeSet<Int> = TreeSet()  // 임무 랜덤 분배
         while (set.size < 5) {
@@ -293,6 +302,7 @@ class scoringboard3 : AppCompatActivity() {
             )
 
 
+
             for (i in 1..6) {
                 for (j in 1..10) {
                     val id_cb = "chk" + i + "_" + j
@@ -369,7 +379,7 @@ class scoringboard3 : AppCompatActivity() {
         sp_secret.onItemSelectedListener = listener
     }
 
-    // 각 P별 스피너 값 및 체크박스 합계를 인자로 하는 함수 선언
+    // 각 Player별 스피너 값 및 체크박스 합계를 인자로 하는 함수 선언
     private fun updateSum(sb_mr: Spinner, sb_secret: Spinner, sb_sum: TextView, idx: Int) = with(binding) {
         val s1 = sb_secret.selectedItem?.toString()?.toIntOrNull() ?: 0
         val s2 = sb_mr.selectedItem?.toString()?.toIntOrNull() ?: 0
@@ -386,26 +396,17 @@ class scoringboard3 : AppCompatActivity() {
             var str_title = winner
             var str_message = "승리하셨습니다."
             var str_btnOK = "확인"
-            var str_btnNO = "취소"
-            var str_btnNature = "이동"
 
             builder = AlertDialog.Builder(this@scoringboard3)
             builder.setTitle(str_title) //팝업창 타이틀 지정
-            builder.setIcon(R.drawable.victory) //팝업창 아이콘 지정
+            builder.setIcon(R.drawable.trophy) //팝업창 아이콘 지정
             builder.setMessage(str_message) //팝업창 내용 지정
             builder.setCancelable(false) //외부 레이아웃 클릭시도 팝업창이 사라지지않게 설정
             builder.setPositiveButton(str_btnOK, DialogInterface.OnClickListener { dialog, which ->
                 Toast.makeText(application, "확인", Toast.LENGTH_SHORT).show()
             })
-            builder.setNegativeButton(str_btnNO, DialogInterface.OnClickListener { dialog, which ->
-                Toast.makeText(application, "취소", Toast.LENGTH_SHORT).show()
-            })
-            builder.setNeutralButton(str_btnNature, DialogInterface.OnClickListener { dialog, which ->
-                Toast.makeText(application, "이동", Toast.LENGTH_SHORT).show()
-            })
             alertDialog = builder.create()
-            try {
-                alertDialog.show()
+            try {alertDialog.show()
             }
             catch (e : Exception){
                 e.printStackTrace()

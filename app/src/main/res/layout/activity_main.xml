@@ -23,35 +23,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.449" />
 
-    <Button
-        android:id="@+id/main_btn_loadgame"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="불러오기"
-        android:textSize="30sp"
-        android:paddingBottom="10dp"
-
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_btn_newgame"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/main_btn_settings"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="설정"
-
-        android:paddingBottom="10dp"
-        android:textSize="30sp"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_btn_loadgame"
-        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
