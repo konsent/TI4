@@ -42,13 +42,13 @@ class newgame_1 : AppCompatActivity() {
         sub_btn_newgame.setOnClickListener { // NEW GAME 버튼
 
             var selectednumber1 = Spinner.selectedItem
+            var selectednumber2 = spinner2.selectedItem
             val intent1 = Intent(this, newplayers::class.java) // 다음으로 넘어가는 버튼
             intent1.putExtra("number1", selectednumber1.toString())
+            intent1.putExtra("number2", selectednumber2.toString())
 
-            var selectednumber2 = spinner2.selectedItem
-            val intent2 = Intent(this, scoringboard3::class.java) // 다음으로 넘어가는 버튼
-            intent.putExtra("number2", selectednumber2.toString())
             startActivity(intent1)
+
 
 
         }

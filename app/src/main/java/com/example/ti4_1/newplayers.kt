@@ -8,6 +8,9 @@ import kotlinx.android.synthetic.main.activity_newplayers.*
 
 
 class newplayers : AppCompatActivity() {
+
+    var vp = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_newplayers)
@@ -29,27 +32,27 @@ class newplayers : AppCompatActivity() {
                     players_p6.visibility = VISIBLE
                 }
             }
-
         }
-        sub_btn_newgame2.setOnClickListener { // P 이름 기록 후 다음 액티비티로 넘기기
-            if (intent.hasExtra("number1")){
-                val player_num = intent.getStringExtra("number1")
-                val intent3 = Intent(this, scoringboard3::class.java)
-                intent3.putExtra("p1name", players_p1.text.toString())
-                intent3.putExtra("p2name", players_p2.text.toString())
-                intent3.putExtra("p3name", players_p3.text.toString())
-                intent3.putExtra("p4name", players_p4.text.toString())
-                intent3.putExtra("p5name", players_p5.text.toString())
-                intent3.putExtra("p6name", players_p6.text.toString())
-                intent3.putExtra("number1", player_num.toString())
+        if (intent.hasExtra("number2")) { // 직전 액티비티에서 가져온 VP(승점)
+            val vpPoint = intent.getStringExtra("number2")
+            vp = vpPoint.toString()
 
-            startActivity(intent3)
+            sub_btn_newgame2.setOnClickListener { // P 이름 기록 후 다음 액티비티로 넘기기
+                if (intent.hasExtra("number1")) {
+                    val player_num = intent.getStringExtra("number1")
+                    val intent3 = Intent(this, scoringboard3::class.java)
+                    intent3.putExtra("p1name", players_p1.text.toString())
+                    intent3.putExtra("p2name", players_p2.text.toString())
+                    intent3.putExtra("p3name", players_p3.text.toString())
+                    intent3.putExtra("p4name", players_p4.text.toString())
+                    intent3.putExtra("p5name", players_p5.text.toString())
+                    intent3.putExtra("p6name", players_p6.text.toString())
+                    intent3.putExtra("vpNumber", vp)
+                    intent3.putExtra("number1", player_num.toString())
 
-
+                    startActivity(intent3)
+                }
             }
-
-
-
         }
     }
 }

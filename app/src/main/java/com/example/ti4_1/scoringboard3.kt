@@ -37,8 +37,7 @@ class scoringboard3 : AppCompatActivity() {
 
     var sum_cbs = arrayListOf<Int>(0, 0, 0, 0, 0, 0)
     var winner = ""
-    var winPoint = ""
-
+    var winPoint : Int = 0
 
 
     private lateinit var binding: ActivityMainBinding
@@ -78,9 +77,10 @@ class scoringboard3 : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(R.layout.activity_scoringboard3)
 
-        if (intent.hasExtra("number2")) { // newgame_1.kt에서 설정한 승점(10/14점)을 가져온다
-            val winPointNum = intent.getStringExtra("number2")
-            Log.d("text11", winPointNum!!.toString())
+        if (intent.hasExtra("vpNumber")) { // newgame_1.kt에서 설정한 승점(10/14점)을 가져온다
+            val winPointNum = intent.getStringExtra("vpNumber")
+            winPoint += winPointNum!!.toIntOrNull()!!
+            Log.d("testX", winPoint.toString())
         }
 
         val set: TreeSet<Int> = TreeSet()  // 임무 랜덤 분배
@@ -125,7 +125,6 @@ class scoringboard3 : AppCompatActivity() {
         if (intent.hasExtra("number1")) { // 전 액티비티에서 고른 P 수 만큼 P 컬럼 숨김을 해제한다
             val player_num2 = intent.getStringExtra("number1")
 
-
             if (player_num2.equals("4")) {
                 for(i in 1..10){
                     val chk4 = "chk4_$i"
@@ -136,7 +135,6 @@ class scoringboard3 : AppCompatActivity() {
                     sb_mr4.visibility = View.VISIBLE
                     sb_p4_sum.visibility = View.VISIBLE
                     sb_p4.visibility = View.VISIBLE
-
 
             } else if (player_num2.equals("5")) {
                 for(i in 1..10){
@@ -191,6 +189,8 @@ class scoringboard3 : AppCompatActivity() {
                     sb_mr6.visibility = View.VISIBLE
                     sb_p6.visibility = View.VISIBLE
             }
+
+
 
             val sb_spinner_secret_p1: Spinner = findViewById(R.id.sb_secret1) // 비밀목표 드랍다운 #1
             ArrayAdapter.createFromResource(this, R.array.secret, android.R.layout.simple_spinner_item
@@ -320,7 +320,7 @@ class scoringboard3 : AppCompatActivity() {
                             // 여기 있어야 체크박스 누를 떄마다 업데이트가 됨
                             updateSum(sbs_mr[i - 1], sbs_secret[i - 1], sbs_sum[i - 1], i - 1)
                             for(k in 1..6){
-                                if(sum_cbs[k-1] >= 10){
+                                if(sum_cbs[k-1] >= winPoint){
                                     getAlertShow(k)
                                 }
                             }
@@ -336,7 +336,7 @@ class scoringboard3 : AppCompatActivity() {
                             // 여기 있어야 체크박스 누를 떄마다 업데이트가 됨
                             updateSum(sbs_mr[i - 1], sbs_secret[i - 1], sbs_sum[i - 1], i - 1)
                             for(k in 1..6){
-                                if(sum_cbs[k-1] >= 10){
+                                if(sum_cbs[k-1] >= winPoint){
                                     getAlertShow(k)
                                 }
                             }
@@ -395,7 +395,7 @@ class scoringboard3 : AppCompatActivity() {
             winner = playerNameIdd.text.toString()
             var str_title = winner
             var str_message = "승리하셨습니다."
-            var str_btnOK = "확인"
+            var str_btnOK = "하하 이 패배자들아"
 
             builder = AlertDialog.Builder(this@scoringboard3)
             builder.setTitle(str_title) //팝업창 타이틀 지정
@@ -403,7 +403,7 @@ class scoringboard3 : AppCompatActivity() {
             builder.setMessage(str_message) //팝업창 내용 지정
             builder.setCancelable(false) //외부 레이아웃 클릭시도 팝업창이 사라지지않게 설정
             builder.setPositiveButton(str_btnOK, DialogInterface.OnClickListener { dialog, which ->
-                Toast.makeText(application, "확인", Toast.LENGTH_SHORT).show()
+                Toast.makeText(application, "승리를 만끽하십시오", Toast.LENGTH_SHORT).show()
             })
             alertDialog = builder.create()
             try {alertDialog.show()
