@@ -18,5 +18,4 @@
     3. 승리 메시지 카카오톡 외 외부 프로그램 공유 
     
   
-<img width="100%" src="https://user-images.githubusercontent.com/66789105/140303399-7dee864e-a06a-4d82-84b8-d5f0fc2f90e1.mp4
-"/>
+<img width="100%" src="https://user-images.githubusercontent.com/66789105/140303995-f4cffd3e-e1b7-47aa-b36d-d68ec765ba84.gif"/>
