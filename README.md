@@ -17,5 +17,6 @@
     2. 여러 해상도 기기 대응가능한 화면 레이아웃
     3. 승리 메시지 카카오톡 외 외부 프로그램 공유 
     
+    
   
-<img width="100%" src="https://user-images.githubusercontent.com/66789105/140303995-f4cffd3e-e1b7-47aa-b36d-d68ec765ba84.gif"/>
+<img width="80%" src="https://user-images.githubusercontent.com/66789105/140303995-f4cffd3e-e1b7-47aa-b36d-d68ec765ba84.gif"/>
